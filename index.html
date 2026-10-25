@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <title>Happy Birthday, Akshaya ♥ — a little film</title>
+  <meta name="description" content="A cinematic birthday film in five acts plus a keepsake gift and golden wish star for Akshaya." />
+  <meta name="theme-color" content="#f7e7dc" />
+  <meta name="color-scheme" content="light" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+  <!-- Open Graph & Twitter share metadata.
+       %VITE_SITE_URL% is replaced at build time (see .env and the deploy workflow).
+       It must end with a slash, e.g. https://owner.github.io/repo/ — social apps
+       need ABSOLUTE https URLs for the share image. Empty in local dev. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="%VITE_SITE_URL%" />
+  <meta property="og:title" content="Happy Birthday, Akshaya ♥ — a little film" />
+  <meta property="og:description" content="A cinematic birthday film in five acts plus a keepsake gift and golden wish star for Akshaya." />
+  <meta property="og:image" content="%VITE_SITE_URL%preview.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Happy Birthday, Akshaya — a golden star on a soft pink background" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Happy Birthday, Akshaya ♥ — a little film" />
+  <meta name="twitter:description" content="A cinematic birthday film in five acts plus a keepsake gift and golden wish star for Akshaya." />
+  <meta name="twitter:image" content="%VITE_SITE_URL%preview.jpg" />
+  <meta name="twitter:image:alt" content="Happy Birthday, Akshaya — a golden star on a soft pink background" />
+
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+  <!-- Hide the envelope until the bundled fonts are ready (no visible font swap).
+       Failsafe: if scripts never run, reveal it after 4 s anyway. -->
+  <script>
+    (function () {
+      var h = document.documentElement;
+      h.classList.add('js', 'fonts-pending');
+      setTimeout(function () { h.classList.remove('fonts-pending'); }, 4000);
+    })();
+  </script>
+  <link rel="stylesheet" href="./birthday.css" />
+</head>
+<body>
+  <noscript>
+    <div class="noscript-msg">
+      <h1>Happy Birthday, Akshaya ♥</h1>
+      <p>Please enable JavaScript to watch your interactive birthday film and open your gift notes.</p>
+    </div>
+  </noscript>
+
+  <main class="scene" id="sceneRoot">
+
+    <!-- Hidden 10-Facet Golden Star Template (Part A2 — exact geometry & colors, ws- prefixed IDs) -->
+    <template id="wishStarTpl">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 686" role="img" aria-label="Golden star">
+        <defs>
+          <linearGradient id="ws-g1"  gradientUnits="userSpaceOnUse" x1="283" y1="200" x2="370" y2="200"><stop offset="0" stop-color="#e2ab4c"/><stop offset="1" stop-color="#a9711f"/></linearGradient>
+          <linearGradient id="ws-g2"  gradientUnits="userSpaceOnUse" x1="370" y1="200" x2="457" y2="200"><stop offset="0" stop-color="#f6c556"/><stop offset="1" stop-color="#efb940"/></linearGradient>
+          <linearGradient id="ws-g3"  gradientUnits="userSpaceOnUse" x1="380" y1="330" x2="720" y2="250"><stop offset="0" stop-color="#fff0b0"/><stop offset="1" stop-color="#ffd467"/></linearGradient>
+          <linearGradient id="ws-g4"  gradientUnits="userSpaceOnUse" x1="390" y1="370" x2="720" y2="253"><stop offset="0" stop-color="#f1b84e"/><stop offset="1" stop-color="#b57a22"/></linearGradient>
+          <linearGradient id="ws-g5"  gradientUnits="userSpaceOnUse" x1="450" y1="390" x2="583" y2="667"><stop offset="0" stop-color="#ffe793"/><stop offset="1" stop-color="#f0b63e"/></linearGradient>
+          <linearGradient id="ws-g6"  gradientUnits="userSpaceOnUse" x1="370" y1="420" x2="583" y2="667"><stop offset="0" stop-color="#a86f24"/><stop offset="1" stop-color="#63380c"/></linearGradient>
+          <linearGradient id="ws-g7"  gradientUnits="userSpaceOnUse" x1="370" y1="420" x2="157" y2="667"><stop offset="0" stop-color="#b57f2b"/><stop offset="1" stop-color="#8a5818"/></linearGradient>
+          <linearGradient id="ws-g8"  gradientUnits="userSpaceOnUse" x1="260" y1="380" x2="157" y2="667"><stop offset="0" stop-color="#f4bd48"/><stop offset="1" stop-color="#b87c20"/></linearGradient>
+          <linearGradient id="ws-g9"  gradientUnits="userSpaceOnUse" x1="20" y1="254" x2="370" y2="368"><stop offset="0" stop-color="#744710"/><stop offset="1" stop-color="#bb8029"/></linearGradient>
+          <linearGradient id="ws-g10" gradientUnits="userSpaceOnUse" x1="20" y1="254" x2="370" y2="330"><stop offset="0" stop-color="#ffd56a"/><stop offset="1" stop-color="#ffeaa8"/></linearGradient>
+        </defs>
+        <g stroke-width="0.8" stroke-linejoin="round">
+          <polygon points="283,246 370,18 370,368"  fill="url(#ws-g1)"  stroke="url(#ws-g1)"/>
+          <polygon points="370,18 457,246 370,368"  fill="url(#ws-g2)"  stroke="url(#ws-g2)"/>
+          <polygon points="457,246 720,253 370,368" fill="url(#ws-g3)"  stroke="url(#ws-g3)"/>
+          <polygon points="720,253 518,415 370,368" fill="url(#ws-g4)"  stroke="url(#ws-g4)"/>
+          <polygon points="518,415 583,667 370,368" fill="url(#ws-g5)"  stroke="url(#ws-g5)"/>
+          <polygon points="583,667 370,530 370,368" fill="url(#ws-g6)"  stroke="url(#ws-g6)"/>
+          <polygon points="370,530 157,667 370,368" fill="url(#ws-g7)"  stroke="url(#ws-g7)"/>
+          <polygon points="157,667 222,415 370,368" fill="url(#ws-g8)"  stroke="url(#ws-g8)"/>
+          <polygon points="222,415 20,254 370,368"  fill="url(#ws-g9)"  stroke="url(#ws-g9)"/>
+          <polygon points="20,254 283,246 370,368"  fill="url(#ws-g10)" stroke="url(#ws-g10)"/>
+        </g>
+      </svg>
+    </template>
+
+    <!-- The tree world (Act 4). One canvas; it stays transparent until the
+         intro hands off, then it draws its own warm sky + blossom tree. -->
+    <canvas id="tree" class="tree" aria-label="A blossom tree grows and blooms into a heart made of petals for Akshaya" role="img"></canvas>
+
+    <!-- ENVELOPE INTRO — flip open before Act 1. -->
+    <div class="envelope" id="envelope" aria-label="Tap to open Akshaya's birthday card" role="button" tabindex="0">
+      <div class="envelope__body" id="envBody">
+        <svg class="envelope__svg-base" viewBox="0 0 460 295" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="envBaseGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#fff6ee" />
+              <stop offset="55%" stop-color="#fde2ce" />
+              <stop offset="100%" stop-color="#f4cbb6" />
+            </linearGradient>
+            <linearGradient id="envInnerGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#f2c2ac" />
+              <stop offset="100%" stop-color="#e8b29a" />
+            </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="460" height="295" rx="12" fill="url(#envBaseGrad)" />
+          <path d="M0 12 Q0 0 12 0 L448 0 Q460 0 460 12 L230 168 Z" fill="url(#envInnerGrad)" opacity="0.55" />
+        </svg>
+
+        <div class="envelope__card" aria-hidden="true">
+          <span class="envelope__cardLine"></span>
+          <p class="envelope__for">For <span class="name-script name-script--env" id="envForName">Akshaya</span></p>
+          <span class="envelope__cardHeart">♥</span>
+        </div>
+
+        <svg class="envelope__svg-pocket" viewBox="0 0 460 295" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="envSideL" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#fef0e4" />
+              <stop offset="100%" stop-color="#f6ceb9" />
+            </linearGradient>
+            <linearGradient id="envSideR" x1="1" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#fef0e4" />
+              <stop offset="100%" stop-color="#f5cab4" />
+            </linearGradient>
+            <linearGradient id="envBotFlap" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#fde7d6" />
+              <stop offset="100%" stop-color="#f6cbb6" />
+            </linearGradient>
+          </defs>
+          <path d="M0 8 L230 162 L0 287 Z" fill="url(#envSideL)" />
+          <path d="M460 8 L230 162 L460 287 Z" fill="url(#envSideR)" />
+          <path d="M0 287 L230 132 L460 287" fill="none" stroke="rgba(165,85,65,0.14)" stroke-width="2.5" />
+          <path d="M0 285 Q0 295 12 295 L448 295 Q460 295 460 285 L230 134 Z" fill="url(#envBotFlap)" />
+          <rect x="1" y="1" width="458" height="293" rx="11" fill="none" stroke="rgba(215,145,120,0.32)" stroke-width="1.5" />
+        </svg>
+
+        <div class="envelope__flap" id="envFlap" aria-hidden="true">
+          <svg viewBox="0 0 460 170" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="envTopFlap" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#fff5eb" />
+                <stop offset="15%" stop-color="#fde3d0" />
+                <stop offset="100%" stop-color="#f4c6b0" />
+              </linearGradient>
+            </defs>
+            <path d="M0 10 Q0 0 12 0 L448 0 Q460 0 460 10 L238 162 Q230 168 222 162 Z" fill="url(#envTopFlap)" stroke="rgba(195,115,95,0.22)" stroke-width="1.5" />
+            <path d="M18 8 L230 152 L442 8" fill="none" stroke="rgba(232,162,61,0.38)" stroke-width="1.2" stroke-dasharray="4 3" />
+          </svg>
+        </div>
+
+        <div class="envelope__front">
+          <p class="envelope__recipient" aria-hidden="true">For <span class="name-script name-script--env" id="envFrontName">Akshaya</span></p>
+          <div class="envelope__seal">
+            <svg viewBox="0 0 40 40" aria-hidden="true">
+              <path d="M20 34C10 26 4 20 4 13 4 8 7.5 5 12 5c3.2 0 5.4 1.8 8 5 2.6-3.2 4.8-5 8-5 4.5 0 8 3 8 8 0 7-6 13-16 21Z" fill="#d4235c"/>
+            </svg>
+          </div>
+          <p class="envelope__hint" id="envHint">tap to open ✦</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACT 1 — THE INVITATION -->
+    <section class="hero" id="hero" aria-label="Draw the bow to open Akshaya's birthday card">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="hero__motes" id="motes" aria-hidden="true"></div>
+      <div class="butterflies" id="butterflies" aria-hidden="true"></div>
+
+      <p class="hero__eyebrow" id="eyebrow">
+        a little something, for <span class="name-script" id="heroName">Akshaya</span>
+      </p>
+
+      <div class="targetWrap" aria-hidden="true">
+        <div class="target" id="target">
+          <span class="heart__aura" aria-hidden="true"></span>
+          <span class="heart__aura2" aria-hidden="true"></span>
+          <span class="heart__glow" aria-hidden="true"></span>
+          <span class="target__heart" id="targetHeart">
+            <svg class="heart__svg" viewBox="0 0 100 92" aria-hidden="true">
+              <defs>
+                <radialGradient id="hg" cx="38%" cy="30%" r="80%">
+                  <stop offset="0%"  stop-color="#ffd9e4" />
+                  <stop offset="42%" stop-color="#ff6f97" />
+                  <stop offset="82%" stop-color="#d81e57" />
+                  <stop offset="100%" stop-color="#9d0f3e" />
+                </radialGradient>
+                <linearGradient id="hsheen" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%"  stop-color="rgba(255,255,255,.85)" />
+                  <stop offset="34%" stop-color="rgba(255,255,255,0)" />
+                </linearGradient>
+              </defs>
+              <path d="M50 86.5C26 68 10.5 53.6 10.5 34.6 10.5 20.4 21 11 33.2 11c8.6 0 14.2 4.7 16.8 11.4C52.6 15.7 58.2 11 66.8 11 79 11 89.5 20.4 89.5 34.6 89.5 53.6 74 68 50 86.5Z" fill="url(#hg)" />
+              <path d="M50 86.5C26 68 10.5 53.6 10.5 34.6 10.5 20.4 21 11 33.2 11c8.6 0 14.2 4.7 16.8 11.4C52.6 15.7 58.2 11 66.8 11 79 11 89.5 20.4 89.5 34.6 89.5 53.6 74 68 50 86.5Z" fill="url(#hsheen)" opacity=".7" />
+              <ellipse cx="34" cy="30" rx="8.5" ry="5.4" fill="#fff" opacity=".72" style="mix-blend-mode:screen" />
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="archery" id="archery" role="button" tabindex="0"
+           aria-label="Draw the bow and release to send the arrow to the heart">
+
+          <div class="aim" id="aim" aria-hidden="true"></div>
+          <div class="archery__pulse" id="archeryPulse" aria-hidden="true"></div>
+
+          <svg class="bow" id="bow" viewBox="0 0 460 300" aria-hidden="true">
+            <defs>
+              <linearGradient id="limb" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0"   stop-color="#4a2a1a" />
+                <stop offset=".18" stop-color="#6b3f24" />
+                <stop offset=".5"  stop-color="#8a5127" />
+                <stop offset=".82" stop-color="#6b3f24" />
+                <stop offset="1"   stop-color="#4a2a1a" />
+              </linearGradient>
+              <linearGradient id="limbHi" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="rgba(255,214,160,.8)" />
+                <stop offset="1" stop-color="rgba(255,214,160,0)" />
+              </linearGradient>
+              <linearGradient id="grip" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#2a1a10" />
+                <stop offset=".5" stop-color="#5a3822" />
+                <stop offset="1" stop-color="#2a1a10" />
+              </linearGradient>
+            </defs>
+            <path class="bow__limb" id="bowLimb" d="M34 96 C 118 168, 168 240, 230 252 C 292 240, 342 168, 426 96"
+                  fill="none" stroke="url(#limb)" stroke-width="13" stroke-linecap="round" />
+            <path class="bow__limbHi" id="bowLimbHi" d="M34 96 C 118 168, 168 240, 230 252 C 292 240, 342 168, 426 96"
+                  fill="none" stroke="url(#limbHi)" stroke-width="3" stroke-linecap="round" opacity=".7" />
+            <path id="bowTipL" d="M34 96 C 22 82, 26 70, 40 66" fill="none" stroke="url(#limb)" stroke-width="8" stroke-linecap="round" />
+            <path id="bowTipR" d="M426 96 C 438 82, 434 70, 420 66" fill="none" stroke="url(#limb)" stroke-width="8" stroke-linecap="round" />
+            <rect x="216" y="206" width="28" height="70" rx="9" fill="url(#grip)" />
+            <path d="M219 220h22 M219 236h22 M219 252h22" stroke="rgba(0,0,0,.35)" stroke-width="2" />
+            <line class="bow__str" id="strL" x1="40" y1="70" x2="230" y2="96" stroke="#9a8068" stroke-width="2.4" stroke-linecap="round" />
+            <line class="bow__str" id="strR" x1="420" y1="70" x2="230" y2="96" stroke="#9a8068" stroke-width="2.4" stroke-linecap="round" />
+            <circle class="bow__serving" id="serving" cx="230" cy="96" r="4.8" fill="#6f5137" />
+          </svg>
+
+          <svg class="arrow" id="arrow" viewBox="0 0 64 220" aria-hidden="true">
+            <defs>
+              <linearGradient id="shaft" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#4a2c14" />
+                <stop offset=".5" stop-color="#8a5a2c" />
+                <stop offset="1" stop-color="#3e2410" />
+              </linearGradient>
+              <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ffe38c" />
+                <stop offset=".45" stop-color="#f4a626" />
+                <stop offset="1" stop-color="#a85f0e" />
+              </linearGradient>
+              <linearGradient id="feath" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ff7f9c" />
+                <stop offset=".5" stop-color="#e6396a" />
+                <stop offset="1" stop-color="#a8154a" />
+              </linearGradient>
+              <linearGradient id="wing" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ffffff" />
+                <stop offset="1" stop-color="#ffe0c4" />
+              </linearGradient>
+            </defs>
+
+            <rect x="29.4" y="30" width="5.2" height="168" rx="2.6" fill="url(#shaft)" />
+
+            <g class="arrow__wings">
+              <path class="wingL" d="M31 30 C 10 16, 2 20, 4 34 C 12 30, 20 32, 31 40 Z" fill="url(#wing)" stroke="rgba(196,132,58,.72)" stroke-width="1.2"/>
+              <path class="wingR" d="M33 30 C 54 16, 62 20, 60 34 C 52 30, 44 32, 33 40 Z" fill="url(#wing)" stroke="rgba(196,132,58,.72)" stroke-width="1.2"/>
+            </g>
+
+            <path class="arrow__head" d="M32 12 C 30 7, 22 6.5, 21.5 13 C 21 18, 27 22, 32 27 C 37 22, 43 18, 42.5 13 C 42 6.5, 34 7, 32 12 Z" fill="url(#gold)" stroke="#a5701a" stroke-width=".8" />
+            <ellipse cx="27" cy="13" rx="2.6" ry="1.7" fill="#fff" opacity=".8" style="mix-blend-mode:screen" />
+
+            <g class="arrow__fletch">
+              <path d="M32 150 C 16 156, 10 178, 15 200 C 24 194, 30 184, 32 176 Z" fill="url(#feath)" />
+              <path d="M32 150 C 48 156, 54 178, 49 200 C 40 194, 34 184, 32 176 Z" fill="url(#feath)" opacity=".92" />
+              <path d="M28 160l4 3 M26 170l6 3 M25 180l7 3" stroke="rgba(130,12,48,.45)" stroke-width="1" />
+              <path d="M36 160l-4 3 M38 170l-6 3 M39 180l-7 3" stroke="rgba(130,12,48,.45)" stroke-width="1" />
+            </g>
+            <path d="M29 200 L32 205 L35 200" fill="none" stroke="#c9a25a" stroke-width="2" stroke-linecap="round"/>
+            <circle id="tip" cx="32" cy="9" r="0.6" fill="none" />
+          </svg>
+      </div>
+
+      <p class="hero__hint" id="hint">pull &amp; release</p>
+    </section>
+
+    <!-- ACT 2 — THE FLOOD -->
+    <div class="impact-flash" id="impactFlash" aria-hidden="true"></div>
+    <div class="flood" id="flood" aria-hidden="true"></div>
+    <div class="ripple-ring" id="rippleRing1" aria-hidden="true"></div>
+    <div class="ripple-ring" id="rippleRing2" aria-hidden="true"></div>
+
+    <!-- ACT 3 — THE WISH (kinetic type on the flood) -->
+    <div class="field" id="field" aria-hidden="true">
+      <div class="blob blob--1"></div>
+      <div class="blob blob--2"></div>
+      <div class="blob blob--3"></div>
+      <div class="blob blob--4"></div>
+      <div class="fgrid" id="fgrid"></div>
+      <div class="fvignette"></div>
+
+      <div class="camera" id="camera">
+        <p class="kEyebrow" id="kEyebrow">make a wish&hellip;</p>
+        <h2 class="headline" id="headline">
+          <span class="hl__line"><span class="mask"><span class="hl__word" id="wLine1">Happy</span></span></span>
+          <span class="hl__line"><span class="mask"><span class="hl__word" id="wLine2">Birthday</span></span></span>
+        </h2>
+        <svg class="uline" id="uline" viewBox="0 0 300 26" fill="none" aria-hidden="true">
+          <path class="uline__path" d="M8 16C56 7 132 4 178 6c30 1 78 5 114 12-40 3-108 4-176 3"
+                stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <p class="kSub" id="kSub">
+          to <span class="name-script name-script--light" id="act3Name">Akshaya</span>, someone worth celebrating
+        </p>
+      </div>
+
+      <div class="bar bar--top" id="barTop"></div>
+      <div class="bar bar--bot" id="barBot"></div>
+    </div>
+
+    <!-- The gold light that bridges the rose wish into the dawn of the tree. -->
+    <div class="bloom" id="bloom" aria-hidden="true"></div>
+
+    <!-- ACT 4 — THE HAND-LETTERED WISH (over the tree) -->
+    <div class="wish" id="wish" aria-hidden="true">
+      <p class="wish__eyebrow" id="wEyebrow">and&hellip; make it count</p>
+      <div class="wish__heroWrap">
+        <h1 class="wish__hero" id="wHero">Happy Birthday, <span class="name-script name-script--hero" id="act4Name">Akshaya</span></h1>
+      </div>
+      <span class="wish__rule" id="wRule"></span>
+      <p class="wish__sub" id="wSub">here&rsquo;s to a year that blooms</p>
+    </div>
+
+    <!-- ACT 5 — BIRTHDAY CAKE (canvas) -->
+    <canvas class="cake-canvas" id="cakeCanvas" aria-label="Akshaya's birthday cake with glowing candles" role="img"></canvas>
+
+    <!-- INTERACTIVE TOUCH SPARKLE TRAIL -->
+    <canvas class="sparkle-canvas" id="sparkleCanvas" aria-hidden="true"></canvas>
+
+    <!-- Finale footer: Open Gift CTA + Closing Note -->
+    <div class="finale-Dock" id="finaleDock">
+      <button class="open-gift-btn" id="openGiftBtn" type="button" aria-label="Open your birthday gift, Akshaya">
+        <span class="open-gift-btn__shimmer" aria-hidden="true"></span>
+        <span class="open-gift-btn__label" id="openGiftLabel">open your gift ✦</span>
+      </button>
+      <p class="end-note" id="endNote">
+        with love, always &mdash; for <span class="name-script" id="closingName">Akshaya</span>
+      </p>
+    </div>
+
+    <!-- Static unanimated Replay link shown in the final still end state (Part B) -->
+    <button class="final-replay-link" id="finalReplayLink" type="button" aria-label="Replay birthday film">
+      replay
+    </button>
+
+    <!-- ACT 6 — THE GIFT MODAL (Open-When Notes + Make-a-Wish Box + Replay) -->
+    <section class="gift-modal" id="giftModal" role="dialog" aria-modal="true" aria-labelledby="giftModalTitle" aria-hidden="true">
+      <div class="gift-modal__backdrop" id="giftBackdrop"></div>
+      <div class="gift-modal__card" id="giftCard">
+        <button class="gift-modal__close" id="closeGiftBtn" type="button" aria-label="Return to birthday cake">
+          &times;
+        </button>
+
+        <header class="gift-modal__header">
+          <p class="gift-modal__eyebrow" id="giftEyebrow">for <span class="name-script" id="giftEyebrowName">Akshaya</span>, whenever you need a reminder</p>
+          <h2 class="gift-modal__title" id="giftModalTitle">
+            Little Letters for <span class="name-script" id="giftTitleName">Akshaya</span>
+          </h2>
+          <p class="gift-modal__progress" id="notesProgress" aria-live="polite">0 of 5 opened</p>
+        </header>
+
+        <div class="gift-notes-grid" id="notesGrid" role="list"></div>
+
+        <div class="note-reader" id="noteReader" aria-hidden="true">
+          <div class="note-reader__paper" id="notePaper">
+            <button class="note-reader__close" id="closeNoteBtn" type="button" aria-label="Close letter">&times;</button>
+            <div class="note-reader__seal" aria-hidden="true">♥</div>
+            <h3 class="note-reader__title" id="noteReaderTitle"></h3>
+            <div class="note-reader__body" id="noteReaderBody"></div>
+            <p class="note-reader__sign" id="noteReaderSign"></p>
+          </div>
+        </div>
+
+        <!-- Part 2: Make a Wish Box (transforms her wish into the Hero Golden Wish Star) -->
+        <div class="wish-box" id="wishBox">
+          <label class="wish-box__label" for="wishInput">
+            Make a wish &mdash; turn your words into a golden star
+          </label>
+          <form class="wish-box__form" id="wishForm">
+            <input
+              type="text"
+              id="wishInput"
+              class="wish-box__input"
+              maxlength="80"
+              placeholder="Write a birthday wish, Akshaya…"
+              autocomplete="off"
+            />
+            <button type="submit" class="wish-box__btn" id="wishSubmitBtn">
+              Release ✦
+            </button>
+          </form>
+          <p class="wish-box__status" id="wishStatus" aria-live="polite"></p>
+        </div>
+
+        <!-- Part 3: Replay Button -->
+        <footer class="gift-modal__footer">
+          <button class="replay-btn" id="replayBtn" type="button" aria-label="Replay birthday film from the beginning">
+            <span aria-hidden="true">↻</span> replay from the beginning
+          </button>
+        </footer>
+      </div>
+    </section>
+
+    <!-- Persistent Mute Toggle (Task 3 / Part C) -->
+    <button class="mute-btn" id="muteBtn" type="button" aria-label="Mute sound" aria-pressed="false">
+      <svg class="mute-btn__icon mute-btn__icon--on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+      </svg>
+      <svg class="mute-btn__icon mute-btn__icon--off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <line x1="23" y1="9" x2="17" y2="15"></line>
+        <line x1="17" y1="9" x2="23" y2="15"></line>
+      </svg>
+    </button>
+
+    <!-- One lens over the whole film: vignette + fine grain. -->
+    <div class="grade" aria-hidden="true">
+      <div class="grade__vignette"></div>
+      <div class="grade__grain"></div>
+    </div>
+
+    <!-- ACCESSIBILITY: Screen reader announcements for act transitions -->
+    <div class="sr-only" id="actAnnouncer" aria-live="polite" aria-atomic="true"></div>
+  </main>
+
+  <p class="sr-only" id="srSummary">Happy Birthday, Akshaya. Here&rsquo;s to a wonderful year ahead.</p>
+
+  <script type="module" src="./birthday.js"></script>
+</body>
+</html>
