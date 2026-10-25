@@ -1350,8 +1350,11 @@ body{
 /* ============================================================
    FEATURE 1 — ENVELOPE INTRO (darker readable "For Akshaya")
    ============================================================ */
-/* Held back until the bundled fonts are loaded (see loadFonts in birthday.js) */
-html.fonts-pending .envelope{ opacity:0 !important; visibility:hidden !important; }
+/* Until the bundled fonts are loaded (see loadFonts in birthday.js) only the
+   envelope PAPER and its text are held back. The .envelope backdrop itself must
+   stay visible: it is the opaque layer that covers the bow-and-heart scene
+   underneath, which would otherwise show through on slower phone connections. */
+html.fonts-pending .envelope__body{ visibility:hidden; }
 .envelope{
   position:absolute; inset:0; z-index:20;
   display:flex; align-items:center; justify-content:center;
