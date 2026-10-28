@@ -886,6 +886,7 @@ const audio = (() => {
         break;
 
       case 'firework':
+        break;
         logCue('firework', t0);
         schedTone(c, sfxBus, 240, t0, { type: 'triangle', dur: 0.12, gain: 0.18, attack: 0.003, freqEnd: 78 });
         schedNoise(c, sfxBus, noiseBuf, t0 + 0.03, {
@@ -911,6 +912,7 @@ const audio = (() => {
         break;
 
       case 'sparkle': {
+        break;
         const nowMs = performance.now();
         if (nowMs - lastSparkleAt < 95) break;
         lastSparkleAt = nowMs;
@@ -2670,6 +2672,62 @@ function renderGiftContent(type = GIFT_TYPE) {
   }
 }
 
+/* Photo letters: a framed 4:5 photo plus a one-line caption. The frame reserves
+   its space up front (no layout jump) and the photo fades in when decoded. If the
+   file is missing, the letter falls back to the original text instead of breaking. */
+function renderNoteBody(note) {
+  noteReaderBody.textContent = '';
+  noteReaderBody.classList.remove('has-photo');
+  if (!note.photo) {
+    noteReaderBody.textContent = note.text || note.caption || '';
+    return;
+  }
+  const fig = document.createElement('figure');
+  fig.className = 'note-photo';
+
+  const frame = document.createElement('div');
+  frame.className = 'note-photo__frame';
+
+  const img = document.createElement('img');
+  img.className = 'note-photo__img';
+  img.alt = note.alt || '';
+  img.width = 800;
+  img.height = 1000;
+  img.decoding = 'async';
+  img.draggable = false;
+  const reveal = () => frame.classList.add('is-loaded');
+  img.addEventListener('load', reveal, { once: true });
+  img.addEventListener('error', () => {
+    noteReaderBody.classList.remove('has-photo');
+    noteReaderBody.textContent = note.text || note.caption || '';
+  }, { once: true });
+  img.src = note.photo;
+  if (img.complete && img.naturalWidth) reveal();   /* already cached */
+  frame.appendChild(img);
+
+  const cap = document.createElement('figcaption');
+  cap.className = 'note-photo__caption';
+  cap.textContent = note.caption || '';
+
+  fig.appendChild(frame);
+  fig.appendChild(cap);
+  noteReaderBody.appendChild(fig);
+  noteReaderBody.classList.add('has-photo');
+}
+
+/* Warm the browser cache when the gift card opens, so each letter shows its photo instantly. */
+let notePhotosPreloaded = false;
+function preloadNotePhotos() {
+  if (notePhotosPreloaded) return;
+  notePhotosPreloaded = true;
+  NOTES.forEach((n) => {
+    if (!n.photo) return;
+    const im = new Image();
+    im.decoding = 'async';
+    im.src = n.photo;
+  });
+}
+
 function openNoteLetter(idx, envBtn) {
   const note = NOTES[idx];
   if (!note || !noteReader || stillEnded) return;
@@ -2683,7 +2741,7 @@ function openNoteLetter(idx, envBtn) {
   cue('note');
 
   noteReaderTitle.textContent = note.title;
-  noteReaderBody.textContent = note.text;
+  renderNoteBody(note);
   noteReaderSign.textContent = `— ${SENDER_NAME}`;
 
   noteReader.classList.add('is-open');
@@ -2700,7 +2758,7 @@ function openNoteLetter(idx, envBtn) {
       { scale: 1, rotationX: 0, y: 0, duration: 0.55, ease: 'back.out(1.45)' }
     );
   }
-  announce(`${note.title}. ${note.text} Signed ${SENDER_NAME}. (${openedNotes.size} of ${NOTES.length} opened)`);
+  announce(`${note.title}. ${note.photo ? `${note.alt || ''} ${note.caption || ''}` : note.text} Signed ${SENDER_NAME}. (${openedNotes.size} of ${NOTES.length} opened)`);
   if (closeNoteBtn) closeNoteBtn.focus();
 }
 
@@ -2718,6 +2776,7 @@ function openGiftModal() {
   if (sparkleCtx) sparkleCtx.clearRect(0, 0, sparkleCanvas.width, sparkleCanvas.height);
 
   renderGiftContent(GIFT_TYPE);
+  preloadNotePhotos();
   giftModal.style.display = 'flex';
   giftModal.classList.add('is-open');
   giftModal.setAttribute('aria-hidden', 'false');

@@ -12,7 +12,9 @@ there is no CDN and it works offline.
   Override per link with `?to=Name`.
 - **`SENDER_NAME`** — currently `'Midhun'`. Every unfolded letter is signed
   with it. Change it to your own name or signature.
-- **`NOTES`** — titles and text of the five "Open when…" letters.
+- **`NOTES`** — the five "Open when…" letters. Each has a `title`, a `photo`
+  (file in `public/photos/`), an `alt` description, a one-line `caption`, and a
+  fallback `text` that only appears if the photo fails to load.
 - **`WISH_STYLE`** — the wish length limit (80 characters) and label.
 
 ## 2. Run locally
@@ -44,7 +46,15 @@ npm run preview   # http://localhost:4173
   to the console; `window.bdayAPI.measureAudio()` renders the mix offline and
   reports peak and RMS levels.
 
-## 5. Files you can replace
+## 5. Change the letter photos
+
+Photos live in `public/photos/` (`smile`, `doubt`, `overthinking`, `miss`,
+`wish`, all `.jpg`). To swap one, replace the file with a **4:5 portrait**
+(about 800×1000, under 150 KB) and keep the same name, or point `photo` in
+`config.js` at a new file. Crop out anything private (ID cards, signs, location
+data) first; the site is public to anyone with the link.
+
+## 6. Files you can replace
 
 `public/preview.jpg` (1200×630 share image), `public/favicon.png`,
 `public/apple-touch-icon.png` and `public/textures/grain.png`.

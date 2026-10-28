@@ -70,25 +70,42 @@ export const TEXTS = {
   wishStarAnnounce: 'Your wish is now a star.',
 };
 
+/* The five "Open when…" letters. Each one shows a photo and a one-line caption.
+   - photo:    file in /public/photos (800x1000 or smaller, 4:5)
+   - alt:      description for screen readers
+   - caption:  the single line shown under the photo
+   - text:     fallback shown ONLY if the photo file fails to load */
+const photo = (file) => `${import.meta.env.BASE_URL}photos/${file}`;
+
 export const NOTES = [
   {
     title: 'Open when… you need a smile',
+    photo: photo('smile.jpg'),
+    alt: `${RECIPIENT_NAME} laughing with one hand near her chin, among green trees`,
     text: `Imagine I just told the funniest joke ever.\nNow laugh. That's an order, ${RECIPIENT_NAME}.\nSee? Fixed. You're welcome.`,
   },
   {
     title: 'Open when… you doubt yourself',
+    photo: photo('doubt.jpg'),
+    alt: `${RECIPIENT_NAME} standing calmly with a soft smile in a green park`,
     text: 'You are more capable than you believe.\nOther people see it clearly.\nBorrow their eyes for a minute.',
   },
   {
-    title: 'Open when… the day was too long',
+    title: 'Open when… you’re overthinking',
+    photo: photo('overthinking.jpg'),
+    alt: `${RECIPIENT_NAME} resting her chin on her hand, deep in thought`,
     text: 'Breathe. Drink something warm. Play your favourite song.\nTomorrow is a clean page.\nYou have survived every bad day so far.',
   },
   {
-    title: 'Open when… you miss me',
+    title: 'Open when… someone crosses your mind',
+    photo: photo('miss.jpg'),
+    alt: `Close-up of ${RECIPIENT_NAME} smiling warmly at the camera`,
     text: "Look up. Same sky, same moon.\nDistance is just a longer hallway.\nI'm thinking of you right now.",
   },
   {
-    title: 'Open when… you need a wish to come true',
+    title: 'Open when… you want a wish to come true',
+    photo: photo('wish.jpg'),
+    alt: `${RECIPIENT_NAME} in a magenta saree, glancing sideways with a bright smile`,
     text: 'Make it bigger than feels safe.\nThen take one small step today.\nWishes love people who move.',
   },
 ];
